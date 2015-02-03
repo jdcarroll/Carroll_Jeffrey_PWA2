@@ -1,0 +1,29 @@
+body {
+    font: Helvetica;
+}
+.container { /* aligning the container element center on the page */
+    width: 900px;
+    margin: 0 auto;
+    font: Helvetica;
+}
+
+.title_main { /* color header */
+    color: red;
+    font-weight: bold;
+}
+
+td { /* dictate size of the table cells */
+    width: 100px;
+    height: 100px;
+}
+
+.cell1 { /* */
+    background-color: #0C7FE8;
+}
+.cell2 { /* */
+    background-color: #F8FC94;
+}
+.cell3 { /* */
+    background-color: #FF1600;
+}
+

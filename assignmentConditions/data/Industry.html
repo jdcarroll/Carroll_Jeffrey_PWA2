@@ -1,0 +1,12 @@
+<!-- bandwidth how many people can use your web app without constraints on bandwidth -->
+        <link rel="stylesheet" href="../css/main.css">
+        <h2>Calculate your bandwidth</h2>
+        <br>
+        <label for="bandwidth">What is you Bandwidth:</label><input type="text" id="bandwidth"><br><br>
+        <label for="devices">How many devices do you have in your house:</label><input type="text" id="devices"><br><br>
+        <input type="radio" name="activity" id="streamingMedia"><label for="streamingMedia">Streaming Media</label><br>
+        <input type="radio" name="activity" id="internet"><label for="internet">Internet</label><br>
+        <input type="radio" name="activity" id="wirelessHomeNetwork"><label for="wirelessHomeNetwork">Wireless Home Network</label>
+        <br><br>
+        <input type="button" onclick="calculteBandwidth()" value="Submit">
+        <div id="update"></div>
