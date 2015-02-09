@@ -35,19 +35,29 @@ body {
     font-family: 'Jura', sans-serif;
     background: url("../images/logos/large_logo.png"), url("../images/cta3.jpg");
     background-repeat: no-repeat;
-    background-position: center 30%, top left;
+    background-position: center 50%, top left;
     background-size: 50%, cover;
+}
+
+.movedown {
+	background-position: center -50%, top left;
 }
 
 #user_menu {
     display: block;
     background-color: #ffffff;
     overflow: auto;
-    padding: 15px;
+}
+
+#user_tools input[type="submit"] {
+	margin: 5px;
 }
 
 #user_menu h2 {
     display: inline;
+    float: left;
+    margin: 5px;
+    line-height: 37px;
 }
 
 nav {
