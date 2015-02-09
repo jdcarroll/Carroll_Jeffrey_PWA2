@@ -1,0 +1,211 @@
+/* ================================================
+  Author: Jeff Carroll
+  Class: 
+  Purpose Title: 
+  Site: 
+  Date: 2/5/15
+  Email: jdcarroll@fullsail.edu
+  Phone: 561.400.0007
+
+/* ================================================
+          Color Swatches  
+===================================================
+
+  Blue--------------#031047;
+  Green-------------#7cae3f;
+  Red---------------#a30d33;
+  Gray--------------#c3c7c6;
+
+================================================== */
+
+/*=================================================
+          Main Elements
+===================================================*/
+
+@import url(http://fonts.googleapis.com/css?family=Jura);
+
+.innerWrapper {
+    max-width: 1020px;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+body {
+    margin: 0;
+    font-family: 'Jura', sans-serif;
+    background: url("../images/logos/large_logo.png"), url("../images/cta3.jpg");
+    background-repeat: no-repeat;
+    background-position: center 30%, top left;
+    background-size: 50%, cover;
+}
+
+#user_menu {
+    display: block;
+    background-color: #ffffff;
+    overflow: auto;
+    padding: 15px;
+}
+
+#user_menu h2 {
+    display: inline;
+}
+
+nav {
+    background-color: #031047;
+    overflow: auto;
+    z-index: 1;
+    box-shadow: 1px 1px 5px #000000;
+    padding-bottom: 10px;
+}
+
+nav ul {
+    width: 500px;
+    margin: 10px auto;
+
+}
+
+nav ul li {
+    list-style: none;
+    width: 90px;
+    float: left;
+    text-align: center;
+
+}
+
+nav ul li a {
+    text-decoration: none;
+    line-height: 40px;
+    color: #c3c7c6;
+}
+
+nav ul li:hover {
+    background-color: #a30d33;
+
+}
+
+nav ul li a:hover {
+    color: #031047;
+}
+
+.iconBox {
+    background-color: rgba(3,16,71,.50);
+    width: 60%;
+    margin-top: 75px;
+    float: left;
+}
+
+.iconBox {
+    border-radius: 5px;
+}
+
+.iconBox h2 {
+
+    border-bottom: 1px solid #c3c7c6;
+    padding-left: 10px;
+    color: #c3c7c6;
+    font-size: 2em;
+}
+
+.iconBox img{
+    padding: 50px;
+    zoom: 40%;
+}
+
+
+.rightForm {
+    width: 32.352941%;
+    background-color: rgba(255,255,255,.50);
+    border-radius: 5px;
+    margin: 15px;
+    padding: 15px;
+}
+
+#sign_up {
+    display: block;
+    margin-bottom: 10px;
+}
+
+form div {
+    margin: 5px;
+    overflow: auto;
+}
+
+form h2 {
+    text-align: center;
+    background-color: rgba(255,255,255,.50);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+form label {
+    line-height: 30px;
+    color: #031047;
+    float: left;
+    margin: 0;
+    display: inline-block;
+    text-align: right;
+    width: 130px;
+}
+
+form input[type="text"],
+[type="password"],
+[type="email"]{
+    width: 50%;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 10px;
+    float: right;
+}
+
+form input[type="submit"] {
+    margin: 20px 5px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 15px;
+    float: right;
+    background-color: #031047;
+    color: #c3c7c6;
+}
+
+form input[type="submit"]:hover {
+    background-color: #a30d33;
+    color: #031047;
+}
+
+#main {
+    margin-top: 100px;
+    float: right;
+
+}
+
+/*=================================================
+          End of Main Elements
+===================================================*/
+
+/*=================================================
+          Tablet Design
+===================================================*/
+@media screen and (max-width: 768px) and (min-width: 500px) {
+
+
+
+}
+
+/*=================================================
+          End of Tablet Design
+===================================================*/
+
+/*=================================================
+          Mobile Design
+===================================================*/
+
+@media screen and (max-width: 499px) {
+
+
+
+}
+
+/*=================================================
+          End of Mobile Design
+===================================================*/
