@@ -30,12 +30,24 @@
     overflow: auto;
 }
 
+.tooltip {
+    display: none;
+    position: absolute;
+    border: 1px solid #333;
+    background-color: #000000;
+    border-radius: 5px;
+    padding: 10px;
+    color: #fff;
+    z-index: 1002;
+}
+
 body {
     margin: 0;
     font-family: 'Jura', sans-serif;
-    background: url("../images/logos/large_logo.png"), url("../images/cta3.jpg");
+    background: url("../images/logos/large_logo.png"),
+                url("../images/cta3.jpg");
     background-repeat: no-repeat;
-    background-position: center 50%, top left;
+    background-position: center center, top left;
     background-size: 50%, cover;
 }
 
@@ -43,10 +55,130 @@ body {
 	background-position: center -50%, top left;
 }
 
+#baseball, #speed{
+    cursor: pointer;
+}
+
+#baseball_Links {
+    padding-left: 10px;
+    clear: both;
+}
+
+#baseball_Links li:first-child{
+    border-top-left-radius: 5px;
+}
+
+#baseball_Links li:last-child{
+    border-top-right-radius: 5px;
+}
+
+#baseball_Links li {
+    background-color: rgba(255,255,255,.8);
+    padding: 10px 5px 5px 5px;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+#baseball_Links li a {
+    text-decoration: none;
+    color: #031047;
+}
+
+.active {
+    background-color: #cccccc;
+}
+
+#panel {
+    padding-top: 10px;
+}
+
+table {
+    margin-bottom: 10px;;
+    width: 331px;
+    margin-left: 10px;
+    background-color: rgba(3,16,71,.2);
+    color: #ffffff;
+    border-collapse: collapse;
+}
+
+table tr:nth-child(even){
+    background-color: rgba(255,255,255,.8);
+    color: #031047;
+}
+
+table th {
+    background-color: #cccccc;
+    color: #031047;
+    font-weight: bolder;
+    padding: 5px;
+}
+
+table td {
+    text-align: center;
+    padding: 5px;
+}
+
+table td a {
+    color: #031047;
+}
+
+#overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.5);
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index: 1000;
+    display: none;
+}
+
+#modal {
+    width: 350px;
+    background: #CCC;
+    box-shadow: 0 0 10px #000;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    top: 50vh;
+    left: 50vh;
+    margin-top: -200px;
+    margin-right: 500px ;
+    z-index: 1001;
+    display: none;
+}
+
+#modal .header {
+    background: #333;
+    color: #FFF;
+    padding: 10px;
+}
+
+#modal p{
+    margin: 15px;
+}
+
+#modal .close{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    padding:5px 10px;
+    border:1px solid #ccc;
+    cursor: pointer;
+    background-color: #a30d33;
+}
+
 #user_menu {
-    display: block;
+    display: none;
     background-color: #ffffff;
     overflow: auto;
+}
+
+.iconBox ul li {
+    list-style: none;
+    float: left;
 }
 
 #user_tools input[type="submit"] {
@@ -65,12 +197,11 @@ nav {
     overflow: auto;
     z-index: 1;
     box-shadow: 1px 1px 5px #000000;
-    padding-bottom: 10px;
 }
 
 nav ul {
     width: 500px;
-    margin: 10px auto;
+    margin: 0px auto;
 
 }
 
@@ -100,7 +231,6 @@ nav ul li a:hover {
 .iconBox {
     background-color: rgba(3,16,71,.50);
     width: 60%;
-    margin-top: 75px;
     float: left;
 }
 
@@ -123,10 +253,11 @@ nav ul li a:hover {
 
 
 .rightForm {
+    float: right;
     width: 32.352941%;
     background-color: rgba(255,255,255,.50);
     border-radius: 5px;
-    margin: 15px;
+    margin: 0px 15px 15px 15px;
     padding: 15px;
 }
 
@@ -184,8 +315,7 @@ form input[type="submit"]:hover {
 }
 
 #main {
-    margin-top: 100px;
-    float: right;
+    padding-top: 75px;
 
 }
 

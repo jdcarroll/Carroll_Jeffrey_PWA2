@@ -8,6 +8,14 @@
 <body>
 
 <!--Header-->
+    <div id="user_menu">
+        <div id="welcome">
+            <h2>Welcome, User:</h2>
+            <form id="user_tools">
+                <input id="signOut" type="submit" value="Sign Out">
+            </form>
+        </div>
+    </div>
     <nav>
         <ul>
             <li><a href="#">News</a></li>
@@ -21,36 +29,67 @@
 <!--End of Header-->
 
 <!--Body-->
-<div class="innerWrapper">
-    
+<div id="main" class="innerWrapper">
+
     <div class="iconBox">
         <h2>Our Sports</h2>
         <ul>
-            <li><img src="images/icons/baseball_icon.png"></li>
-            <li><img src="images/icons/speed_icon.png"></li>
+            <li><img id="baseball" src="images/icons/baseball_icon.png"></li>
+            <li><img id="speed" src="images/icons/speed_icon.png"></li>
         </ul>
     </div>
-    
-    <div id="main" class="rightForm">
+    <div id="overlay">
+        <div id="modal">
+            <span class="close">X</span>
+            <h3 class="header">Please Sign Up</h3>
+            <div id="add">
+                <form id="sign_up">
+                    <div>
+                        <h2>Register Now</h2>
+                    </div>
+                    <div>
+                        <label for="fname">First Name: </label>
+                        <input name="firstName" id="fname" type="text" class="masterTooltip" placeholder="First name" title="Please enter your first name" required >
+                    </div>
+                    <div>
+                        <label for="lname">Last Name: </label>
+                        <input id="lname" type="text" placeholder="Last Name" class="masterTooltip" title="Enter your last name">
+                    </div>
+                    <div>
+                        <label for="email">E-mail: </label>
+                        <input id="email" type="email" placeholder="E-mail" class="masterTooltip" title="Please enter your Email">
+                    </div>
+                    <div>
+                        <label for="password">Create Password: </label>
+                        <input id="password" type="password" placeholder="Password" class="masterTooltip" title="Please create password">
+                    </div>
+                    <div>
+                        <input type="submit" value="Create Account">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="rightForm">
         <form id="sign_up">
             <div>
                 <h2>Register Now</h2>
             </div>
             <div>
                 <label for="fname">First Name: </label>
-                <input id="fname" type="text" placeholder="First name">
+                <input name="firstName" id="fname" type="text" class="masterTooltip" placeholder="First name" title="Please enter your first name" required >
             </div>
             <div>
                 <label for="lname">Last Name: </label>
-                <input id="lname" type="text" placeholder="Last Name">
+                <input id="lname" type="text" placeholder="Last Name" class="masterTooltip" title="Enter your last name">
             </div>
             <div>
                 <label for="email">E-mail: </label>
-                <input id="email" type="email" placeholder="E-mail">
+                <input id="email" type="email" placeholder="E-mail" class="masterTooltip" title="Please enter your Email">
             </div>
             <div>
                 <label for="password">Create Password: </label>
-                <input id="password" type="password" placeholder="Password">
+                <input id="password" type="password" placeholder="Password" class="masterTooltip" title="Please create password">
             </div>
             <div>
                 <input type="submit" value="Create Account">
@@ -63,13 +102,13 @@
             </div>
             <div>
                 <label for="uname">User Name: </label>
-                <input id="uname" type="text" placeholder="username">
+                <input id="uname" type="text" placeholder="username" class="masterTooltip" title="Please enter username">
             </div>
             <div>
                 <label for="lpassword">Password: </label>
-                <input id="lpassword" type="password" placeholder="Password">
+                <input id="lpassword" type="password" placeholder="Password" class="masterTooltip" title="Please enter password">
             </div>
-            <input type="submit" value="Login">
+            <input id="login" type="submit" value="Login">
         </form>
     </div>
 </div>
@@ -81,8 +120,12 @@
 <!--Footer-->
 
 
+
 <!--End of Footer-->
 
+<!--scripts and list of dependencies-->
+<script src="js/jquery-1.11.2.min.js"></script>
 <script src="js/main.js"></script>
+<!--scripts and list of dependencies-->
 </body>
 </html>
