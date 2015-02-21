@@ -10,7 +10,7 @@
 <!--Header-->
     <div id="user_menu">
         <div id="welcome">
-            <h2>Welcome, User:</h2>
+            <h2>Welcome, <span id="displayName">User:</span></h2>
             <form id="user_tools">
                 <input id="signOut" type="submit" value="Sign Out">
             </form>
@@ -40,34 +40,7 @@
     </div>
     <div id="overlay">
         <div id="modal">
-            <span class="close">X</span>
-            <h3 class="header">Please Sign Up</h3>
-            <div id="add">
-                <form id="sign_up">
-                    <div>
-                        <h2>Register Now</h2>
-                    </div>
-                    <div>
-                        <label for="fname">First Name: </label>
-                        <input name="firstName" id="fname" type="text" class="masterTooltip" placeholder="First name" title="Please enter your first name" required >
-                    </div>
-                    <div>
-                        <label for="lname">Last Name: </label>
-                        <input id="lname" type="text" placeholder="Last Name" class="masterTooltip" title="Enter your last name">
-                    </div>
-                    <div>
-                        <label for="email">E-mail: </label>
-                        <input id="email" type="email" placeholder="E-mail" class="masterTooltip" title="Please enter your Email">
-                    </div>
-                    <div>
-                        <label for="password">Create Password: </label>
-                        <input id="password" type="password" placeholder="Password" class="masterTooltip" title="Please create password">
-                    </div>
-                    <div>
-                        <input type="submit" value="Create Account">
-                    </div>
-                </form>
-            </div>
+
         </div>
     </div>
     <div class="rightForm">
@@ -101,15 +74,18 @@
                 <h2>Login</h2>
             </div>
             <div>
-                <label for="uname">User Name: </label>
-                <input id="uname" type="text" placeholder="username" class="masterTooltip" title="Please enter username">
+                <label for="user">User Name: </label>
+                <input id="user" type="text" placeholder="username" class="masterTooltip" title="Please enter username" value="jdcarroll22@gmail.com">
             </div>
             <div>
-                <label for="lpassword">Password: </label>
-                <input id="lpassword" type="password" placeholder="Password" class="masterTooltip" title="Please enter password">
+                <label for="pass">Password: </label>
+                <input id="pass" type="password" placeholder="Password" class="masterTooltip" title="Please enter password" value="IL0v3j3N">
             </div>
             <input id="login" type="submit" value="Login">
         </form>
+    </div>
+    <div id="admin">
+
     </div>
 </div>
 

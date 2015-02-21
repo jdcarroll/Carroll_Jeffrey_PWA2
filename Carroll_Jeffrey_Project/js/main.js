@@ -3,13 +3,42 @@
  */
 (function($) {
 
-    /* ================= logged in out menu ====================== */
-
+    /* ================= logged in menu ====================== */
+        var user = false;
         $('body').on('click','#login', function(e){
             e.preventDefault();
-           $('#user_menu').slideDown(function(){
-           });
-            ajax('#main','xhr/blank.html')
+            //ajax('#main','xhr/blank.html');
+            $('#login').on('click', function(e){
+                e.preventDefault;
+                var username = $('#user').val();
+                var pass = $('#pass').val();
+                console.log("got values");
+
+                $.ajax({
+
+                    url: 'xhr/login.php',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        username: username,
+                        password: pass
+                    },
+
+                    success: function(response){
+
+                        console.log(user);
+                        if (response.error){
+                            window.location.assign('index.html');
+                        }else{
+                            user = response.user;
+                            console.log(user.teamID);
+                            $('#user_menu').slideDown(function(){
+                            });
+                            admin();
+                        };
+                    }
+                })
+            });
         });
 
         $('body').on('click','#signOut', function(e){
@@ -52,16 +81,24 @@
 
     /* ================ Baseball tabbed Menu ===================== */
     /* ======================== modal ============================ */
+            $('body').on('click', '.modalClick', function(event){
+                console.log('user',user);
+                if (user){
+                    $('#modal').removeClass('regModal').addClass('videoModal');
+                    ajax('#modal', 'xhr/true_modal.html');
+                } else if (user == false){
+                    $('#modal').removeClass('videoModal').addClass('regModal');
+                    ajax('#modal','xhr/false_modal.html');
+                }
+                event.preventDefault();
+                $('#overlay')
+                    .fadeIn()
+                    .find('#modal')
+                    .fadeIn();
+            });
 
-        $('.modalClick').on('click', function(event){
-            event.preventDefault();
-            $('#overlay')
-                .fadeIn()
-                .find('#modal')
-                .fadeIn();
-        });
 
-        $('.close').on('click', function(event){
+        $('body').on('click', '.close', function(event){
             event.preventDefault();
             $('#overlay')
                 .fadeOut()
@@ -70,6 +107,13 @@
         });
 
     /* ======================== modal ============================ */
+    /* ======================== admin ============================ */
+            function admin(){
+                if (user.teamID == 1) {
+                    ajax('#admin', 'xhr/admin.html');
+                }
+            };
+    /* ======================== admin ============================ */
     /* ======================== Ajax ============================= */
     function ajax(location, url) {
 //    function industry() { // this function is to load the industry page
@@ -123,5 +167,60 @@
     }));
 
     /* ======================= tooltip =========================== */
+    /* ====================== Register =========================== */
+        $('body').on('submit','#sign_up', function(e){
+            e.preventDefault();
+            var firstName = $('#fname').val(),
+                 lastName = $('#lname').val(),
+                    email = $('#email').val(),
+                 password = $('#password').val();
+
+                console.log(firstName + " " + lastName + " " + email + " " + password);
+            $.ajax({
+                url: 'xhr/register.php',
+                type: 'post',
+                datatype: 'json',
+                data : {
+                    firstname: firstName,
+                    lastname: lastName,
+                    username: email,
+                    email: email,
+                    password: password
+                },
+
+                success: function(response){
+                    if(response.error){
+                        alert(response.error)
+                    }else{
+                        console.log("success");
+                    }
+                }
+            })
+
+        });
+    /* ====================== Register =========================== */
+    /* ========================= data ============================ */
+    $.getJSON("xhr/courses.json", function(data){
+        $('#panel').html();
+
+        //data.battingCourses[0].title;
+    });
+    /* ========================= data ============================ */
+    /* ====================== show user =========================== */
+    $.getJSON("xhr/check_login.php", function(data){
+        $.each(data, function(key, value){
+            $("#displayName").html(value.first_name);
+        })
+    });
+    /* ====================== show user =========================== */
+    /* ======================== logout =========================== */
+        $('body').on('click','#signOut', function(e){
+            e.preventDefault();
+            $.get('xhr/logout.php', function(){
+                $('#user_menu').slideUp(function(){
+                });
+            })
+        });
+    /* ======================== logout =========================== */
 
 })(jQuery);

@@ -1,0 +1,59 @@
+{
+"heading":[
+        "Catching Drills",
+        "Pitching Drills",
+        "Batting Drills"
+    ],
+"battingCourses": [
+        {
+            "title":"Batting 101",
+            "skill": "beginner",
+            "completed": "false"
+        },
+        {
+            "title":"batting201",
+            "skill": "intermedate",
+            "completed": "false"
+        },
+        {
+            "title":"batting301",
+            "skill": "advanced",
+            "completed": "false"
+        }
+    ],
+"catchingCourses" : [
+        {
+            "title":"catching101",
+            "skill": "beginner",
+            "completed": "false"
+        },
+        {
+            "title":"catching201",
+            "skill": "intermedate",
+            "completed": "false"
+        },
+        {
+            "title":"catching201",
+            "skill": "intermedate",
+            "completed": "false"
+        }
+    ],
+"pitchingCourses" : [
+        {
+            "title":"pitching101",
+            "skill": "beginner",
+            "completed": "false"
+        },
+        {
+            "title":"pitching201",
+            "skill": "intermedate",
+            "completed": "false"
+        },
+        {
+            "title":"pitching201",
+            "skill": "intermedate",
+            "completed": "false"
+        }
+    ]
+}
+

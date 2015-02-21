@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!--Your Name 
+	Date
+    Month
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Weather API</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<style>
+body{
+	font-family: Arial, Helvetica, sans-serif;
+	background-color:#9ED6FF;
+}
+
+#container{
+	width: 90%;
+	margin: 0 auto;
+	height: 600px;
+}
+
+.left {
+	width: 35%;
+	padding: 5%;
+	float: left;
+}
+
+.right {
+	width: 45%;
+	padding: 2%;
+	float: right;
+}
+
+h1 {
+	text-align: center;
+	padding: 2%;
+}
+
+</style>
+
+
+</head>
+<body>
+
+<div id="container">
+<header> 
+	<h1>Weather Underground API</h1>
+</header>
+
+<div class="left">
+<h2>Your Three Day Forecast Summary</h2>
+<p class="three">
+<!--1. Display the three day Forecast Summary here-->
+</p>
+<h2>Your 10-day forecast summary</h2>
+<p class="tenDay">
+<!--2. Display the 10-day forecast summary feature here-->
+</p>
+</div><!--Closes Leftr-->
+
+
+
+<div class="right">
+<h2>Your Hourly 1-day forecast</h2>
+<p class="hourFore">
+<!--3. Display the Hourly 1-day forecast feature here-->
+</p>
+
+<h2>Your Astronomy Summary</h2>
+<p class="astro">
+<!--4. Display the WU Astronomy feature here-->
+</p>
+
+<h2>Your Almanac for today</h2>
+<p class="almanac">
+<!--5. Display the Almanac for today feature here-->
+</p>
+</div><!--Closes Right-->
+</div><!--Closes Container-->
+
+
+<!--Link to jQuery Library-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script> 
+<script>
+$(document).ready(function($){
+
+<!--This is an example of how to embed Geolookup. Use your own API key and city location-->
+<!--Use your own API key and city location-->
+<!--1.Embed the WU 3-day forecast summary feature.-->
+<!--Your Code Here-->
+    $.ajax({
+        url : "http://api.wunderground.com/api/a8cf90039cdc77df/geolookup/conditions/q/FL/Orlando.json",
+        dataType : "jsonp",
+        success : function(parsed_json) {
+            var location = parsed_json['location']['city'];
+            var temp_f = parsed_json['current_observation']['temp_f'];
+            $(".three").html("Current temperature in " + location + " is: " + temp_f+"ºF");
+        }
+    });
+
+
+<!--2.Embed the WU 10-day forecast summary feature.-->	
+<!--Your Code Here-->
+    $.ajax({
+        url : "http://api.wunderground.com/api/a8cf90039cdc77df/geolookup/forecast10day/q/FL/Orlando.json",
+        dataType : "jsonp",
+        success : function(parsed_json) {
+            var day = parsed_json['forecast']['simpleforecast']['forecastday'];
+            $.each(day, function(obj){
+                $('.tenDay').append('<p>'+ day[obj].date.weekday + ' = ' + day[obj].conditions + '</p>')
+            })
+
+        }
+    });
+
+<!--3.Embed the WU Hourly 1-day forecast feature.-->	
+<!--Your Code Here-->
+    $.ajax({
+        url : "http://api.wunderground.com/api/a8cf90039cdc77df/geolookup/hourly/q/FL/Orlando.json",
+        dataType : "jsonp",
+        success : function(parsed_json) {
+            var day = parsed_json['hourly_forecast'];
+            $.each(day, function(obj){
+                $('.hourFore').append('<p>' + " The Temperature is " + day[obj].temp.english + " at " + day[obj].FCTTIME.civil + '</p>');
+
+            });
+
+        }
+    });
+
+
+<!--4.Embed the WU Astronomy feature.-->	
+<!--Your Code Here-->
+    $.ajax({
+        url : "http://api.wunderground.com/api/a8cf90039cdc77df/geolookup/astronomy/q/FL/Orlando.json",
+        dataType : "jsonp",
+        success : function(parsed_json) {
+            var sunrise = parsed_json['moon_phase']['sunrise'];
+            var sunset = parsed_json['moon_phase']['sunset'];
+            $('.astro').html('<p>'+ 'The sunrise will be at ' + sunrise.hour + ' : ' + sunrise.minute +' AM </p>');
+            $('.astro').append('<p>'+ 'The sunset will be at ' + sunset.hour + ' : ' + sunset.minute +' AM </p>')
+
+
+        }
+    });
+
+
+    <!--5.Embed the WU Almanac for today feature.-->
+<!--Your Code Here-->
+
+    $.ajax({
+        url : "http://api.wunderground.com/api/a8cf90039cdc77df/geolookup/almanac/q/FL/Orlando.json",
+        dataType : "jsonp",
+        success : function(parsed_json) {
+            var high = parsed_json['almanac']['temp_high'];
+            var low = parsed_json['almanac']['temp_low'];
+            console.log(high);
+            console.log(low);
+            $('.almanac').html('<p>'+ 'The normal high temperature is ' + high.normal.F + '</p>');
+            $('.almanac').append('<p>'+ 'The record high temperature is ' + high.record.F + '</p>');
+            $('.almanac').append('<p>'+ 'The normal low temperature is ' + low.normal.F + '</p>');
+            $('.almanac').append('<p>'+ 'The record low temperature is ' + low.record.F + '</p>');
+
+
+        }
+    });
+
+
+});  //Closes Doc Ready Function
+
+</script>
+
+
+	
+
+
+	
+
+
+
+</body>
+</html>
