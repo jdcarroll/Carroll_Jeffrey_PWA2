@@ -48,13 +48,39 @@
         });
 
     /* ================= logged in out menu ====================== */
+    /* ======================= Projects ========================== */
+
+    /* ======================= Projects ========================== */
     /* =============== Our Sports tabbed Menu ==================== */
         $('body').on('click','#baseball', function(e){
             e.preventDefault();
             ajax('.iconBox','xhr/baseball.html');
+                    setTimeout(function(){
+
+                        $.ajax({
+                            url: 'xhr/get_projects.php',
+                            type: 'get',
+                            dataType: 'json',
+                            success: function(response){
+                                if(response.error){
+                                    console.log(response.error);
+                                }else{
+                                   var result = response.projects;
+
+                                    $.each(result, function(){
+
+                                        $('#baseball_Links').append('<li><a id="'+ this.projectDescription +'">'+ this.projectName +'</a></li>')
+                                    })
+                                }
+                            }
+                        });
+                    }, 1000)
         });
 
+
         $('speed');
+
+
     /* =============== Our Sports tabbed Menu ==================== */
     /* ================ Baseball tabbed Menu ===================== */
 
@@ -82,8 +108,7 @@
     /* ================ Baseball tabbed Menu ===================== */
     /* ======================== modal ============================ */
             $('body').on('click', '.modalClick', function(event){
-                console.log('user',user);
-                if (user){
+                if (user.teamID == 1){
                     $('#modal').removeClass('regModal').addClass('videoModal');
                     ajax('#modal', 'xhr/true_modal.html');
                 } else if (user == false){
@@ -107,6 +132,89 @@
         });
 
     /* ======================== modal ============================ */
+    /* ================== catagory modal ========================= */
+        $('body').on('click','#categories', function(){
+           ajax('#modal','xhr/categories.html');
+            event.preventDefault();
+            $('#overlay')
+                .fadeIn()
+                .find('#modal').addClass('Modal')
+                .fadeIn();
+            $.ajax({
+                url: 'xhr/get_projects.php',
+                type: 'get',
+                dataType: 'json',
+
+                success: function(response) {
+                    setTimeout(function () {
+                        var result = response.projects
+                        $.each(result, function () {
+                            $('#catagory_list').append('<option value="' + this.id + '">' + this.projectName + '</option>')
+                        })
+                    }, 1000)
+                }
+            });
+
+        $('body').on('click','#deleteCategory', function(e){
+            var projId = $('#catagory_list').val();
+            e.preventDefault();
+            $.ajax({
+                url: 'xhr/delete_project.php',
+                data: {
+                    projectID: projId
+                },
+                type: 'post',
+                dataType: 'json',
+
+                success: function(response){
+                    console.log('success')
+                    if(response.error){
+                        alert(response.error);
+                    } else {
+
+
+                    }
+                }
+            })
+        });
+
+        });
+
+    $('body').on('click','#addButton164532', function(){
+            var categoryName= $('#categoryName').val(),
+                categoryDescription = $('#categoryDescription').val(),
+                categoryCreationDate = $('#categoryCreationDate').val();
+            $.ajax({
+                url: "xhr/new_project.php",
+                type: "post",
+                dataType: "json",
+                data: {
+                    projectName: categoryName,
+                    projectDescription:categoryDescription,
+                    dueDate: categoryCreationDate,
+                    status: ' '
+                },
+                success: function(response){
+                    console.log('testing for success');
+                    if(response.error){
+                        alert(response.error);
+                    }else{
+                    };
+                }
+        });
+    });
+
+    $('body').on
+
+    $('body').on('click', '.close', function(event){
+        event.preventDefault();
+        $('#overlay')
+            .fadeOut()
+            .find('#modal').removeClass('Modal')
+            .fadeOut();
+    });
+
+    /* ================== catagory modal ========================= */
     /* ======================== admin ============================ */
             function admin(){
                 if (user.teamID == 1) {
@@ -116,27 +224,9 @@
     /* ======================== admin ============================ */
     /* ======================== Ajax ============================= */
     function ajax(location, url) {
-//    function industry() { // this function is to load the industry page
-//        var request = new XMLHttpRequest(); // this object XMLHttpRequest() is the ajax object making asynchronous javascript
-//        // possible and puts it into a variable called request
-//        request.open('GET', 'data/industry.html'); // this line takes the request variable and applies the open method to it
-//        // which takes two arguments ('the method to grab info either GET or POST', 'The Path to the file')
-//        request.onreadystatechange = function () { // the onreadystatechange method determines the success on completion of
-//            // an XMLHttpRequest 4 means success and 1 means failure.
-//            if ((request.readyState === 4) && (request.status === 200)) { // I am checking the readystate for success and
-//                // status of the request ajax object to verify that success.  If it fails it does nothing.
-//                var personalContent = request.response; // I am setting the variable to of the ajax object value to then use
-//                // in the document object model
-//                document.getElementById("content").innerHTML = personalContent; // I am entering html into the id of the
-//                // object to display on the html page
-//            }
-//        };
-//        request.send();// This is the command that then sends everything back to the browser from the server in this case it
-//        // is the local host
-//    }
         $.ajax({
             type: "Post",
-            url: url,
+            url: url
         }).done(function(content){
             $(location).fadeOut(function(){
                 $(location).html(content).fadeIn()
@@ -144,6 +234,55 @@
         });
     }
     /* ======================== Ajax ============================= */
+    /* ======================= account info =========================== */
+        var updateAcct = function(){
+            $.ajax({
+                url: 'xhr/get_user.php',
+                type: 'get',
+                dataType: 'json',
+                success: function(response){
+                    if(response.error){
+                        console.log(response.error);
+                    }else{
+                        var updatefirstname = response.user.first_name;
+                        var updatelastname = response.user.last_name;
+                        var updateemail = response.user.email;
+
+                        $('#updatefirstname').val(updatefirstname);
+                        $('#updatelastname').val(updatelastname);
+                        $('#updateemail').val(updateemail);
+                    };
+                }
+            });
+
+            $('#updateAcctBtn').on('click', function(e){
+                e.preventDefault();
+                var changedfirstname = $('#updatefirstname').val();
+               var changedlastname = $('#updatelastname').val();
+               var changedemail = $('#updateemail').val();
+
+                $.ajax({
+                    url: 'xhr/update_user.php',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {
+                        first_name: changedfirstname,
+                        last_name: changedlastname,
+                        email: changedemail
+                    },
+
+                    success: function(response){
+                        if(response.error){
+                            console.log(response.error);
+                        }else{
+                            alert('account updated');
+                        }
+                    }
+                })
+            });
+        };
+        updateAcct();
+    /* ======================= account info =========================== */
     /* ======================= tooltip =========================== */
 
 
@@ -200,11 +339,7 @@
         });
     /* ====================== Register =========================== */
     /* ========================= data ============================ */
-    $.getJSON("xhr/courses.json", function(data){
-        $('#panel').html();
 
-        //data.battingCourses[0].title;
-    });
     /* ========================= data ============================ */
     /* ====================== show user =========================== */
     $.getJSON("xhr/check_login.php", function(data){
@@ -224,3 +359,4 @@
     /* ======================== logout =========================== */
 
 })(jQuery);
+

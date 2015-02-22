@@ -203,6 +203,43 @@ table td a {
     background-color: #a30d33;
 }
 
+.Modal {
+    width: 350px;
+    background: #CCC;
+    box-shadow: 0 0 10px #000;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    top: 50vh;
+    left: 50vh;
+    margin-top: -200px;
+    margin-right: 500px ;
+    z-index: 1001;
+    display: none;
+}
+
+.Modal .header {
+    background: #333;
+    color: #FFF;
+    padding: 10px;
+}
+
+.Modal p{
+    margin: 15px;
+}
+
+.Modal .close{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    padding:5px 10px;
+    border:1px solid #ccc;
+    cursor: pointer;
+    background-color: #a30d33;
+}
+
 #user_menu {
     display: none;
     background-color: #ffffff;
