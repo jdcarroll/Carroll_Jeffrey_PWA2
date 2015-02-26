@@ -144,10 +144,28 @@ table td a {
     background-color: #ccc;
     box-shadow: 0 0 10px #000;
     border-radius: 10px;
+    overflow: auto;
 }
 
-.videoModal div h1 {
+.videoModal .header {
+    background: #333;
+    color: #FFF;
     padding: 10px;
+}
+
+.videoModal div input[type='text'] {
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    float: left;
+    clear: both;
+}
+
+.videoModal div div {
+    box-shadow: none;
+    border-radius: 0px;
+    display: block;
+    padding: 20px;
 }
 
 .videoModal div video {

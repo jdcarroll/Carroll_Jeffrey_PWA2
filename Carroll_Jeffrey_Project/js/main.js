@@ -69,7 +69,7 @@
 
                                     $.each(result, function(){
 
-                                        $('#baseball_Links').append('<li><a id="'+ this.projectDescription +'">'+ this.projectName +'</a></li>')
+                                        $('#baseball_Links').append('<li><a id="'+ this.projectDescription +'" data-id="'+this.projectID+'">'+ this.projectName +'</a></li>')
                                     })
                                 }
                             }
@@ -82,12 +82,15 @@
 
 
     /* =============== Our Sports tabbed Menu ==================== */
+    /* =============== accordion ==================== */
+
+    /* =============== accordion ==================== */
     /* ================ Baseball tabbed Menu ===================== */
 
         $('body').on('click','#catching', function(e){
             e.preventDefault();
             var title = "Catching";
-            ajax('#panel','xhr/tabbed_panel/catch.html');
+            ajax('#panel','xhr/tabbed_panel/'+title+'.html');
             $('#courseType').html(title);
             $('#catching').parent().addClass('active');
         });
@@ -104,7 +107,51 @@
             ajax('#panel','xhr/tabbed_panel/bat.html');
             $('#courseType').html(title);
         });
+        $('body').on('click','#courseType', function(e){
 
+            ajax('#modal', 'xhr/edit.html');
+                var title = $('#courseType').html();
+                console.log(title);
+                $('#overlay').fadeIn().find('#modal').addClass('videoModal').fadeIn();
+                setInterval(function(){
+                        $('#courseTypeEditable').html("<h3>Edit " + title + " Categories</h3>");
+                }, 300);
+            var projID = $('#baseball_links').val();
+            console.log("This is the project id: ",projID);
+            $.ajax({
+                url: 'xhr/get_projects.php',
+                type: 'get',
+                dataType: 'json',
+                data : {
+                    projectID: projID
+                },
+                success: function(response){
+                    if(response.error){
+                        console.log(response.error);
+                    }else {
+//                        var array = ['pitching', 'batting', 'catching'];
+                        console.log(response);
+                        var currentName = response.projects[0].projectName;
+                        console.log(currentName);
+                        $('').val();
+                    }
+                }
+            });
+        });
+
+        $('body').on('click','#editSubmit', function(e){
+            e.preventDefault();
+
+
+
+
+
+
+            var changedCategoriesName = $('#editCategoriesName').val();
+            var changedCategoriesDescription = $('#editCategoriesDescription').val();
+            var changedCategoriesDate = $('#editCategoriesDate').val();
+
+        });
     /* ================ Baseball tabbed Menu ===================== */
     /* ======================== modal ============================ */
             $('body').on('click', '.modalClick', function(event){
@@ -140,10 +187,16 @@
                 .fadeIn()
                 .find('#modal').addClass('Modal')
                 .fadeIn();
+                setInterval(function(){ $('#categoryCreationDate').ready(function(){
+                    $(this).datepicker();
+                })}, 3000);
+
+
             $.ajax({
                 url: 'xhr/get_projects.php',
                 type: 'get',
                 dataType: 'json',
+
 
                 success: function(response) {
                     setTimeout(function () {
@@ -282,6 +335,8 @@
             });
         };
         updateAcct();
+
+
     /* ======================= account info =========================== */
     /* ======================= tooltip =========================== */
 
