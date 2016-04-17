@@ -1,3 +1,3 @@
 # Carroll_Jeffrey_PWA2
 
-There are some funky bugs that stop the ajax from working at times.. I just wish to discuss with you further
+This was a project for school where eventhough it was not designed for it I am trying to use jquery as a tool to build a single page appilcation and it failed horribly. fun though.
